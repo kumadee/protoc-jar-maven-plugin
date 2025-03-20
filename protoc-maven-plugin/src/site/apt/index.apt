@@ -3,7 +3,7 @@
   Introduction
   ------
 
-protoc-jar-maven-plugin
+protoc-maven-plugin
 
   Protocol Buffers codegen plugin - based on {{{https://github.com/blackrock/protoc-jar}protoc-jar}} executable JAR
 
@@ -27,7 +27,7 @@ protoc-jar-maven-plugin
 +---+
 <plugin>
 	<groupId>io.github.blackrock</groupId>
-	<artifactId>protoc-jar-maven-plugin</artifactId>
+	<artifactId>protoc-maven-plugin</artifactId>
 	<version>1.0.0</version>
 	<executions>
 		<execution>
@@ -46,7 +46,7 @@ protoc-jar-maven-plugin
 +---+
 <plugin>
 	<groupId>io.github.blackrock</groupId>
-	<artifactId>protoc-jar-maven-plugin</artifactId>
+	<artifactId>protoc-maven-plugin</artifactId>
 	<version>1.0.0</version>
 	<executions>
 		<execution>
@@ -75,7 +75,7 @@ protoc-jar-maven-plugin
 +---+
 <plugin>
 	<groupId>io.github.blackrock</groupId>
-	<artifactId>protoc-jar-maven-plugin</artifactId>
+	<artifactId>protoc-maven-plugin</artifactId>
 	<version>1.0.0</version>
 	<executions>
 		<execution>
@@ -109,7 +109,7 @@ protoc-jar-maven-plugin
 +---+
 <plugin>
 	<groupId>io.github.blackrock</groupId>
-	<artifactId>protoc-jar-maven-plugin</artifactId>
+	<artifactId>protoc-maven-plugin</artifactId>
 	<version>1.0.0</version>
 	<executions>
 		<execution>
@@ -143,7 +143,7 @@ protoc-jar-maven-plugin
 +---+
 <plugin>
 	<groupId>io.github.blackrock</groupId>
-	<artifactId>protoc-jar-maven-plugin</artifactId>
+	<artifactId>protoc-maven-plugin</artifactId>
 	<version>1.0.0</version>
 	<executions>
 		<execution>
@@ -170,7 +170,7 @@ protoc-jar-maven-plugin
 +---+
 <plugin>
 	<groupId>io.github.blackrock</groupId>
-	<artifactId>protoc-jar-maven-plugin</artifactId>
+	<artifactId>protoc-maven-plugin</artifactId>
 	<version>1.0.0</version>
 	<executions>
 		<execution>
@@ -197,7 +197,7 @@ protoc-jar-maven-plugin
 +---+
 <plugin>
 	<groupId>io.github.blackrock</groupId>
-	<artifactId>protoc-jar-maven-plugin</artifactId>
+	<artifactId>protoc-maven-plugin</artifactId>
 	<version>1.0.0</version>
 	<executions>
 		<execution>
@@ -225,7 +225,7 @@ protoc-jar-maven-plugin
 +---+
 <plugin>
 	<groupId>io.github.blackrock</groupId>
-	<artifactId>protoc-jar-maven-plugin</artifactId>
+	<artifactId>protoc-maven-plugin</artifactId>
 	<version>1.0.0</version>
 	<executions>
 		<execution>
@@ -262,7 +262,7 @@ protoc-jar-maven-plugin
 +---+
 <plugin>
 	<groupId>io.github.blackrock</groupId>
-	<artifactId>protoc-jar-maven-plugin</artifactId>
+	<artifactId>protoc-maven-plugin</artifactId>
 	<version>1.0.0</version>
 	<executions>
 		<execution>
@@ -275,6 +275,38 @@ protoc-jar-maven-plugin
 				<type>java-shaded</type>
 				<addSources>none</addSources>
 				<outputDirectory>src/main/java</outputDirectory>
+				<inputDirectories>
+					<include>src/main/protobuf</include>
+				</inputDirectories>
+			</configuration>
+		</execution>
+	</executions>
+</plugin>
++---+
+
+  \
+  Sample usage - generate sources but packaging type of maven project is "pom".
+  Requires version greater than 2.0.1.
+
++---+
+<packaging>pom</packaging>
+...
+
+<plugin>
+	<groupId>io.github.blackrock</groupId>
+	<artifactId>protoc-maven-plugin</artifactId>
+	<executions>
+		<execution>
+			<phase>generate-sources</phase>
+			<goals>
+				<goal>run</goal>
+			</goals>
+			<configuration>
+				<protocVersion>2.4.1</protocVersion>
+				<skipPomPackaging>false</skipPomPackaging>
+				<type>python</type>
+				<addSources>none</addSources>
+				<outputDirectory>src/main/python</outputDirectory>
 				<inputDirectories>
 					<include>src/main/protobuf</include>
 				</inputDirectories>

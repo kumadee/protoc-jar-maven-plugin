@@ -155,6 +155,34 @@ Sample usage - compile in test cycle, multiple output targets, don't alter proje
 </plugin>
 ```
 
+Sample usage - generate sources but packaging type of maven project is "pom".
+Requires version greater than 2.0.1.
+
+```xml
+<plugin>
+	<groupId>io.github.blackrock</groupId>
+	<artifactId>protoc-maven-plugin</artifactId>
+	<executions>
+		<execution>
+			<phase>generate-sources</phase>
+			<goals>
+				<goal>run</goal>
+			</goals>
+			<configuration>
+				<protocVersion>2.4.1</protocVersion>
+				<skipPomPackaging>false</skipPomPackaging>
+				<type>python</type>
+				<addSources>none</addSources>
+				<outputDirectory>src/main/python</outputDirectory>
+				<inputDirectories>
+					<include>src/main/protobuf</include>
+				</inputDirectories>
+			</configuration>
+		</execution>
+	</executions>
+</plugin>
+```
+
 ## Contributing
 
 ### [Contributing](./CONTRIBUTING.md)

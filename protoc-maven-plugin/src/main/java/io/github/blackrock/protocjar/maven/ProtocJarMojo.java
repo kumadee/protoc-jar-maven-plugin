@@ -259,6 +259,15 @@ public class ProtocJarMojo extends AbstractMojo
 	private String protocArtifact;
 
 	/**
+	* This parameter (when set to false) allows to execute the protoc code generation
+	* when Maven project packaging type is POM. This is required when your packaging type cannot
+	* be one of the standard types like jar, war, ear. This usually happens for non-Java
+	* bindings.
+	*/
+	@Parameter(name="skipPomPackaging", defaultValue = "true")
+	private boolean skipPomPackaging;
+
+	/**
 	 * The Maven project.
 	 */
 	@Parameter(defaultValue = "${project}", required = true, readonly = true)
@@ -282,11 +291,11 @@ public class ProtocJarMojo extends AbstractMojo
 	private File tempRoot = null;
 
 	public void execute() throws MojoExecutionException {
-		if (project.getPackaging() != null && "pom".equals(project.getPackaging().toLowerCase())) {
+		if (skipPomPackaging && project.getPackaging() != null && "pom".equals(project.getPackaging().toLowerCase())) {
 			getLog().info("Skipping 'pom' packaged project");
 			return;
 		}
-		
+
 		if (outputTargets == null || outputTargets.length == 0) {
 			OutputTarget target = new OutputTarget();
 			target.type = type;
