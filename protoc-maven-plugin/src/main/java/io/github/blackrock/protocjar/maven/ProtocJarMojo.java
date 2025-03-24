@@ -291,7 +291,7 @@ public class ProtocJarMojo extends AbstractMojo
 	private File tempRoot = null;
 
 	public void execute() throws MojoExecutionException {
-		if (skipPomPackaging && project.getPackaging() != null && "pom".equals(project.getPackaging().toLowerCase())) {
+		if (skipPomPackaging && "pom".equalsIgnoreCase(project.getPackaging())) {
 			getLog().info("Skipping 'pom' packaged project");
 			return;
 		}
